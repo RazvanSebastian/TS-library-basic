@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# compiled output
+dist/
+coverage/
+TESTS-*
+
+# sonarqube
+/reports
+
+# IDEs and editors
+/.idea/
+/.settings/
+/.project
+/.vscode/
+*.iml
+
+lib

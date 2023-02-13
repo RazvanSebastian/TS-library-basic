@@ -1,0 +1,120 @@
+{
+  "name": "@custom-library/basics",
+  "version": "1.0.0",
+  "description": "Custom library with basics setup.",
+  "sideEffects": false,
+  "exports": {
+    "./utils": "./utils/index.js",
+    "./test": "./test/index.js",
+    "./models": "./models/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "utils": [
+        "utils/index.d.ts"
+      ],
+      "test": [
+        "test/index.d.ts"
+      ],
+      "models": [
+        "models/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "*"
+  ],
+  "scripts": {
+    "prebuild": "rm -rf dist && mkdir dist && cp package.json dist/",
+    "prebuild:dev": "npm run prebuild",
+    "build": "npm run build:prod:tsc",
+    "build:prod:tsc": "tsc -p tsconfig.prod.json && tsc-alias",
+    "build:prod:webpack": "webpack --config ./webpack.prod.js && tsc-alias",
+    "build:dev:tsc": "npm run prebuild:dev && npm run build:prod:tsc",
+    "build:dev:webpack": "npm run prebuild:dev && webpack --config ./webpack.prod.js && tsc-alias",
+    "package:dev:tsc": "npm run build:dev:tsc && cd dist && HUSKY=0 npm pack",
+    "package:dev:webpack": "npm run build:dev:webpack && cd dist && npm pack",
+    "validate:ci": "npm-run-all --parallel lint test:ci",
+    "lint": "eslint --ext ts --quiet",
+    "ts-check": "tsc-files --noEmit",
+    "test": "npm run test:karma",
+    "test:ci": "karma start --ci --enableCoberturaReport",
+    "test:ci:all": "karma start --ci --enableCoberturaReport --enableAllCoverageReporters",
+    "test:karma": "npm run lint && karma start",
+    "serve": "webpack-dev-server --config ./webpack.dev.js",
+    "pretty": "pretty-quick --staged"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^4.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "circular-dependency-plugin": "^5.2.2",
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.8.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-webpack-plugin": "^3.2.0",
+    "fork-ts-checker-webpack-plugin": "^7.2.13",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.3",
+    "jasmine": "^4.3.0",
+    "jasmine-core": "^4.3.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "karma": "^6.4.0",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-coverage": "^2.2.0",
+    "karma-jasmine": "^5.1.0",
+    "karma-jasmine-html-reporter": "^2.0.0",
+    "karma-junit-reporter": "^2.0.1",
+    "karma-sonarqube-unit-reporter": "0.0.23",
+    "karma-sourcemap-loader": "^0.3.8",
+    "karma-spec-reporter": "^0.0.34",
+    "karma-typescript": "^5.5.3",
+    "karma-typescript-es6-transform": "^5.5.3",
+    "karma-webpack": "^5.0.0",
+    "lint-staged": "13.1.0",
+    "npm-check-updates": "^16.0.5",
+    "npm-install-peers": "^1.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "pretty-quick": "^3.1.3",
+    "recursive-readdir": "^2.2.2",
+    "source-map-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.3",
+    "ts-loader": "^9.3.1",
+    "tsc-alias": "^1.7.0",
+    "tsc-files": "1.1.3",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  },
+  "peerDependencies": {
+    "@types/lodash.clonedeep": "^4.5.0",
+    "@types/sanitize-html": "^2.8.0",
+    "lodash.clonedeep": "^4.5.0",
+    "sanitize-html": "^2.8.1"
+  },
+  "keywords": [
+    "TypeScript",
+    "JavaScript",
+    "Commons",
+    "utilities"
+  ],
+  "author": "RazvanSebastian",
+  "lint-staged": {
+    "**/*.ts": [
+      "npm run ts-check",
+      "npm run lint"
+    ]
+  },
+  "dependencies": {
+    "pkg": "^5.8.0"
+  }
+}

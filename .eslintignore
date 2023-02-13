@@ -1,0 +1,11 @@
+node_modules/**/*
+dist/**/*
+lib
+webpack.*
+spec
+karma.conf.js
+coverage
+bin/**/*
+config/**/*
+test/**/*
+/*.js

@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "ESNext",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "lib": ["ES2015", "DOM"],
+    "baseUrl": "./",
+    "paths": {
+      "mappers/*": ["src/mappers/*"],
+      "models/*": ["src/models/*"],
+      "utils/*": ["src/utils/*"],
+      "test-utils/*": ["src/test-utils/*"],
+      "validators/*": ["src/validators/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

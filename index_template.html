@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>common-utility-web-starter</title>
+
+        <script type="module">
+            import {isValidIbanNumber} from "/validators.js";
+
+            function checkIban() {
+                let inputValue = document.getElementById("iban").value;
+                alert('Is ' + inputValue + ' valid? : ' + isValidIbanNumber(inputValue));
+            }
+            document.querySelector('button').addEventListener('click', checkIban);
+        </script>
+    </head>
+
+    <body>
+        <p>Usage example for IBAN validator</p>
+
+        <label for="iban">IBAN: </label>
+        <input type="text" id="iban">
+        <button>Check Iban</button>
+
+        <p>TEST DATA:</p>
+        <ul>
+            <li>VALID
+                <ul>
+                    <li>GB98MIDL07009312345678</li>
+                    <li>DE65 7603 0080 0930 1710 23</li>
+                </ul>
+            </li>
+            <li>INVALID
+                <ul>
+                    <li>XX65760300800930171023</li>
+                    <li>DE66 76030080 09301710 23</li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </body>
+</html>

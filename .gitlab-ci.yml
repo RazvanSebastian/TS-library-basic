@@ -1,0 +1,5 @@
+include:
+  - project: 'it-dev/web/modern-web/ci-pipeline-includes'
+    ref: master
+    file:
+      - 'pipelines/common-utility-web-starter.yaml'
